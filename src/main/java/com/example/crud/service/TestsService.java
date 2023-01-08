@@ -45,5 +45,13 @@ public interface TestsService {
 	*/
 	
 	Test actualizarTest(Test test);
+	
+	/**
+	*Metodo que permite eliminar un test 
+	*@param id {@link Long} objeto test a eliminar
+	*@return test eliminado
+	*/
+	
+	void eliminarTest(Long id);
 
 }

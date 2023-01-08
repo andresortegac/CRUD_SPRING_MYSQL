@@ -55,8 +55,12 @@ public class TestsServiceImpl implements TestsService {
 
 	@Override
 	public Test actualizarTest(Test test) {
-		// TODO Auto-generated method stub
 		return this.testsRepository.save(test);
+	}
+
+	@Override
+	public void eliminarTest(Long id) {
+		this.testsRepository.deleteById(id);
 	}
 
 }
