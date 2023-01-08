@@ -53,4 +53,10 @@ public class TestsServiceImpl implements TestsService {
 		return this.testsRepository.save(test);
 	}
 
+	@Override
+	public Test actualizarTest(Test test) {
+		// TODO Auto-generated method stub
+		return this.testsRepository.save(test);
+	}
+
 }

@@ -32,10 +32,18 @@ public interface TestsService {
 	
 	/**
 	*Metodo que permite guardar un test 
-	*@param id {@link Test} objeto test a guardar
+	*@param test {@link Test} objeto test a guardar
 	*@return test guardado
 	*/
 	
 	Test guardarTest(Test test);
+	
+	/**
+	*Metodo que permite actualizar un test 
+	*@param test {@link Test} objeto test a actualizar
+	*@return test actualizado
+	*/
+	
+	Test actualizarTest(Test test);
 
 }

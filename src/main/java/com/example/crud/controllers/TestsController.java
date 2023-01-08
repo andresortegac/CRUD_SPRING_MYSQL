@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,6 +61,17 @@ public class TestsController {
 		Test testGuardado = this.testsServiceImpl.guardarTest(test);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(testGuardado);
+		
+	}
+	
+	@PutMapping()
+	@RequestMapping(value = "actualizarTest", method = RequestMethod.PUT)	
+    
+	public ResponseEntity<?> actualizarTest(@RequestBody Test test){	
+		
+		Test testActualizado = this.testsServiceImpl.actualizarTest(test);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(testActualizado);
 		
 	}
 }
