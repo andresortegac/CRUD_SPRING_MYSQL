@@ -6,9 +6,13 @@ package com.example.crud.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -22,15 +26,17 @@ import com.example.crud.service.TestsService;
 *@version 1.0 14/12/2022
 *Controlador que manipula el flujo de los servicios rest del microservicio de test
 */
+
 @RestController
 @RequestMapping("/tests")
 public class TestsController {
 	
 	@Autowired
-	private TestsService testsServiceImpl;
+	private TestsService testsServiceImpl;	
 	
 	@GetMapping
-	@RequestMapping(value = "consultarTests", method = RequestMethod.GET)
+	@RequestMapping(value = "consultarTests", method = RequestMethod.GET)	
+	
     
 	public ResponseEntity<?> consultarTests(){
 		
@@ -39,12 +45,21 @@ public class TestsController {
 		return ResponseEntity.ok(testsConsultados); 
 	}
 	
-	@GetMapping("/consultarByIdTest/{id}")   
+	@GetMapping("/consultarByIdTest/{id}")
 	
-	public Test consultarByIdTest(@PathVariable Long id){
-		
-	
+	public Test consultarByIdTest(@PathVariable Long id){		
 		
 		return testsServiceImpl.consultarByIdTest(id); 
+	}
+	
+	@PostMapping()
+	@RequestMapping(value = "guardarTest", method = RequestMethod.POST)	
+    
+	public ResponseEntity<?> guardarTest(@RequestBody Test test){	
+		
+		Test testGuardado = this.testsServiceImpl.guardarTest(test);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(testGuardado);
+		
 	}
 }

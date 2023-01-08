@@ -19,13 +19,23 @@ public interface TestsService {
 	*Metodo que permite consultar un listado de tests 
 	*@return listado de tests
 	*/
+	
 	List<Test> consultarTests();
 	
 	/**
 	*Metodo que permite consultar por Id un test 
 	*@param id {@link Long} objeto test a consultar
-	*@return test consultado
+	*@return test consultado por id
 	*/
+	
 	Test consultarByIdTest(Long id);
+	
+	/**
+	*Metodo que permite guardar un test 
+	*@param id {@link Test} objeto test a guardar
+	*@return test guardado
+	*/
+	
+	Test guardarTest(Test test);
 
 }

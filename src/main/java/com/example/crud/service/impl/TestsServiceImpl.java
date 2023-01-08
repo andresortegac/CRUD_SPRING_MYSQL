@@ -1,6 +1,7 @@
 
 package com.example.crud.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,9 +43,14 @@ public class TestsServiceImpl implements TestsService {
 			return optionalTest.get();
 		}else {
 			return new Test();
-		}
-	
+		}	
 		
+	}
+
+	@Override
+	public Test guardarTest(Test test) {
+		
+		return this.testsRepository.save(test);
 	}
 
 }
