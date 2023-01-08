@@ -20,5 +20,12 @@ public interface TestsService {
 	*@return listado de tests
 	*/
 	List<Test> consultarTests();
+	
+	/**
+	*Metodo que permite consultar por Id un test 
+	*@param id {@link Long} objeto test a consultar
+	*@return test consultado
+	*/
+	Test consultarByIdTest(Long id);
 
 }

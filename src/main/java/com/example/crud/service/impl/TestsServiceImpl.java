@@ -2,6 +2,7 @@
 package com.example.crud.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -30,8 +31,20 @@ public class TestsServiceImpl implements TestsService {
 	@Override
 	public List<Test> consultarTests() {
 		List<Test> testsDataSourse =StreamSupport.stream(this.testsRepository.findAll().spliterator(), false).collect(Collectors.toList());
-		// TODO Auto-generated method stub
 		return testsDataSourse;
+	}
+
+	@Override
+	public Test consultarByIdTest(Long id) {
+		Optional<Test> optionalTest = testsRepository.findById(id);
+		
+		if(optionalTest.isPresent()) {
+			return optionalTest.get();
+		}else {
+			return new Test();
+		}
+	
+		
 	}
 
 }

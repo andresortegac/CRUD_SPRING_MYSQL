@@ -8,8 +8,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.crud.entity.Test;
@@ -35,5 +37,14 @@ public class TestsController {
 		List<Test> testsConsultados = this.testsServiceImpl.consultarTests();
 		
 		return ResponseEntity.ok(testsConsultados); 
+	}
+	
+	@GetMapping("/consultarByIdTest/{id}")   
+	
+	public Test consultarByIdTest(@PathVariable Long id){
+		
+	
+		
+		return testsServiceImpl.consultarByIdTest(id); 
 	}
 }
