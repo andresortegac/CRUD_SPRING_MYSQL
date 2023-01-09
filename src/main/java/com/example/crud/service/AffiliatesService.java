@@ -6,6 +6,7 @@ package com.example.crud.service;
 import java.util.List;
 
 import com.example.crud.entity.Affiliate;
+import com.example.crud.entity.Test;
 
 
 /**
@@ -20,4 +21,12 @@ public interface AffiliatesService {
 	*/
 	
 	List<Affiliate> consultarAffiliates();
+	
+	/**
+	*Metodo que permite consultar por Id un affiliate 
+	*@param id {@link Long} objeto affiliate a consultar
+	*@return affiliate consultado por id
+	*/
+	
+	Affiliate consultarByIdAffiliate(Long id);
 }

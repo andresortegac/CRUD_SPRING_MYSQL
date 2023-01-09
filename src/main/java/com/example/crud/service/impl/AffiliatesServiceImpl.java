@@ -4,6 +4,7 @@
 package com.example.crud.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -35,6 +36,18 @@ public class AffiliatesServiceImpl implements AffiliatesService {
 	public List<Affiliate> consultarAffiliates() {
 		List<Affiliate> affiliatesDataSourse = StreamSupport.stream(this.affiliatesRepository.findAll().spliterator(), false).collect(Collectors.toList());
 		return affiliatesDataSourse;
+	}
+
+
+	@Override
+	public Affiliate consultarByIdAffiliate(Long id) {
+		Optional<Affiliate> optionalAffiliate = affiliatesRepository.findById(id);
+		
+		if(optionalAffiliate.isPresent()) {
+			return optionalAffiliate.get();
+		}else {
+			return new Affiliate();
+		}
 	}
 
 }
