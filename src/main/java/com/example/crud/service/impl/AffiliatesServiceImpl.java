@@ -62,4 +62,11 @@ public class AffiliatesServiceImpl implements AffiliatesService {
 		return this.affiliatesRepository.save(affiliate);
 	}
 
+
+	@Override
+	public void eliminarAffiliate(Long id) {
+		this.affiliatesRepository.deleteById(id);
+		
+	}
+
 }

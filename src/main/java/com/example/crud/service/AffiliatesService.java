@@ -45,4 +45,12 @@ public interface AffiliatesService {
 	*/
 	
 	Affiliate actualizarAffiliate(Affiliate affiliate);
+	
+	/**
+	*Metodo que permite eliminar un affiliate 
+	*@param id {@link Long} objeto affiliate a eliminar
+	*@return affiliate eliminado
+	*/
+	
+	void eliminarAffiliate(Long id);
 }
