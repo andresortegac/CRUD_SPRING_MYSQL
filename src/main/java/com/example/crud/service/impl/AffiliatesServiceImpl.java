@@ -50,4 +50,10 @@ public class AffiliatesServiceImpl implements AffiliatesService {
 		}
 	}
 
+
+	@Override
+	public Affiliate guardarAffiliate(Affiliate affiliate) {		
+		return this.affiliatesRepository.save(affiliate);
+	}
+
 }

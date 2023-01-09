@@ -29,4 +29,12 @@ public interface AffiliatesService {
 	*/
 	
 	Affiliate consultarByIdAffiliate(Long id);
+	
+	/**
+	*Metodo que permite guardar un affiliate 
+	*@param affiliate {@link Affiliate} objeto affiliate a guardar
+	*@return test guardado
+	*/
+	
+	Affiliate guardarAffiliate(Affiliate affiliate);
 }
