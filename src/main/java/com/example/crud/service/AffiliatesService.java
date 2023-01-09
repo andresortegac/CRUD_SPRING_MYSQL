@@ -37,4 +37,12 @@ public interface AffiliatesService {
 	*/
 	
 	Affiliate guardarAffiliate(Affiliate affiliate);
+	
+	/**
+	*Metodo que permite actualizar un affiliate 
+	*@param affiliate {@link Affiliate} objeto affiliate a actualizar
+	*@return affiliate actualizado
+	*/
+	
+	Affiliate actualizarAffiliate(Affiliate affiliate);
 }

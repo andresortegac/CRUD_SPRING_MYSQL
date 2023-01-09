@@ -56,4 +56,10 @@ public class AffiliatesServiceImpl implements AffiliatesService {
 		return this.affiliatesRepository.save(affiliate);
 	}
 
+
+	@Override
+	public Affiliate actualizarAffiliate(Affiliate affiliate) {		
+		return this.affiliatesRepository.save(affiliate);
+	}
+
 }
