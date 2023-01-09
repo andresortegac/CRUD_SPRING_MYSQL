@@ -6,6 +6,7 @@ package com.example.crud.service;
 import java.util.List;
 
 import com.example.crud.entity.Appointment;
+import com.example.crud.entity.Test;
 
 /**
 *@author DevOrtega
@@ -21,4 +22,11 @@ public interface AppointmentsService {
 	
 	List<Appointment> consultarAppointments();
 
+	/**
+	*Metodo que permite consultar por Id un appointment 
+	*@param id {@link Long} objeto appointment a consultar
+	*@return appointment consultado por id
+	*/
+	
+	Appointment consultarByIdAppointment(Long id);
 }

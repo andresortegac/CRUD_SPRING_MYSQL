@@ -4,6 +4,7 @@
 package com.example.crud.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -30,6 +31,17 @@ public class AppointmentsServiceImpl implements AppointmentsService {
 	public List<Appointment> consultarAppointments() {
 		List<Appointment> appointmentsDataSourse =StreamSupport.stream(this.appointmentsRepository.findAll().spliterator(), false).collect(Collectors.toList());
 		return appointmentsDataSourse;
+	}
+
+	@Override
+	public Appointment consultarByIdAppointment(Long id) {
+		Optional<Appointment> optionalAppointment = appointmentsRepository.findById(id);
+		
+		if(optionalAppointment.isPresent()) {
+			return optionalAppointment.get();
+		}else {
+			return new Appointment();
+		}	
 	}
 
 }
