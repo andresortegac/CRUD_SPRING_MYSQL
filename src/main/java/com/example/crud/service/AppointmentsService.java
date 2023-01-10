@@ -45,4 +45,12 @@ public interface AppointmentsService {
 	*/
 	
 	Appointment actualizarAppointment(Appointment appointment);
+	
+	/**
+	*Metodo que permite eliminar un appointment 
+	*@param id {@link Long} objeto appointment a eliminar
+	*@return appointment eliminado
+	*/
+	
+	void eliminarAppointment(Long id);
 }
