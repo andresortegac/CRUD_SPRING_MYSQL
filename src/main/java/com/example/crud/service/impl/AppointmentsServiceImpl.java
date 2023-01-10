@@ -3,7 +3,6 @@
  */
 package com.example.crud.service.impl;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -71,6 +70,13 @@ public class AppointmentsServiceImpl implements AppointmentsService {
 			return new Appointment();
 		}	
 	}
+
+	@Override
+	public List<Appointment> getAppointmentsByAffiliate(long id) {
+		return appointmentsRepository.findByAffiliateId(id);
+	}
+
+	
 
 	
 

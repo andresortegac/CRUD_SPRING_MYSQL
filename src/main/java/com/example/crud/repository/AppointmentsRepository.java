@@ -4,6 +4,7 @@
 package com.example.crud.repository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -17,4 +18,7 @@ import com.example.crud.entity.Appointment;
 */
 public interface AppointmentsRepository extends CrudRepository<Appointment, Long> {
 	Optional<Appointment> findByDate(String date);
+	
+	List<Appointment> findByAffiliateId(long id);
+
 }

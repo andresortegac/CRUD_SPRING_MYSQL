@@ -3,7 +3,6 @@
  */
 package com.example.crud.entity;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import jakarta.persistence.Column;
@@ -11,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -38,9 +39,11 @@ public class Appointment {
 	@Column(name = "hour")
 	private LocalTime hour;
 	
-	@Column(name = "id_test")
-	private Long id_test;
+	@ManyToOne
+	@JoinColumn(name = "id_test")
+	private Test test;
 	
-	@Column(name = "id_affiliate")
-	private Long id_affiliate;
+	@ManyToOne
+	@JoinColumn(name = "id_affiliate")
+	private Affiliate affiliate;
 }

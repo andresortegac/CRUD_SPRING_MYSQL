@@ -3,8 +3,8 @@
  */
 package com.example.crud.service;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import com.example.crud.entity.Appointment;
 import com.example.crud.entity.Test;
@@ -63,4 +63,11 @@ public interface AppointmentsService {
 	
 	Appointment consultarByDateAppointment(String date);
 	
+	/**
+	*Metodo que permite consultar por id_affiliate un appointment 
+	*@param id_affiliate {@link Affiliate} objeto appointment a consultar
+	*@return appointment consultado por id_affiliate
+	*/
+	
+	List<Appointment> getAppointmentsByAffiliate(long id);
 }
