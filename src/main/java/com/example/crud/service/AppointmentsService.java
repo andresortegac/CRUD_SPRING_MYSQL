@@ -37,4 +37,12 @@ public interface AppointmentsService {
 	*/
 	
 	Appointment guardarAppointment(Appointment appointment);
+	
+	/**
+	*Metodo que permite actualizar un appointment 
+	*@param appointment {@link Test} objeto appointment a actualizar
+	*@return appointment actualizado
+	*/
+	
+	Appointment actualizarAppointment(Appointment appointment);
 }
