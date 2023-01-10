@@ -3,6 +3,7 @@
  */
 package com.example.crud.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.crud.entity.Appointment;
@@ -53,4 +54,13 @@ public interface AppointmentsService {
 	*/
 	
 	void eliminarAppointment(Long id);
+	
+	/**
+	*Metodo que permite consultar por date un appointment 
+	*@param date {@link String} objeto appointment a consultar
+	*@return appointment consultado por date
+	*/
+	
+	Appointment consultarByDateAppointment(String date);
+	
 }

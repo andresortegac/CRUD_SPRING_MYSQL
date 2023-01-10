@@ -3,6 +3,7 @@
  */
 package com.example.crud.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -59,5 +60,18 @@ public class AppointmentsServiceImpl implements AppointmentsService {
 		this.appointmentsRepository.deleteById(id);
 		
 	}
+
+	@Override
+	public Appointment consultarByDateAppointment(String date) {		
+		Optional<Appointment> optionalAppointment = appointmentsRepository.findByDate(date);
+		
+		if(optionalAppointment.isPresent()) {
+			return optionalAppointment.get();
+		}else {
+			return new Appointment();
+		}	
+	}
+
+	
 
 }

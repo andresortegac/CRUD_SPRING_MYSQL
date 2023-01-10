@@ -85,5 +85,14 @@ public class AppointmentsController {
 		return ResponseEntity.ok().build();
 		
 	}
+	
+	@GetMapping("/consultarByDateAppointment/{date}")
+	
+	public Appointment consultarByDateAppointment(@PathVariable String date){		
+		
+		return appointmentsServiceImpl.consultarByDateAppointment(date); 
+	}
+	
+	
 
 }

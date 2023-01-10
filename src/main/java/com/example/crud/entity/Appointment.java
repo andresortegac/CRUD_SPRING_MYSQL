@@ -33,14 +33,14 @@ public class Appointment {
 	private Long id;
 	
 	@Column(name = "date")
-	private LocalDate date;
+	private String date;
 	
 	@Column(name = "hour")
 	private LocalTime hour;
 	
 	@Column(name = "id_test")
-	private int id_test;
+	private Long id_test;
 	
 	@Column(name = "id_affiliate")
-	private int id_affiliate;
+	private Long id_affiliate;
 }
