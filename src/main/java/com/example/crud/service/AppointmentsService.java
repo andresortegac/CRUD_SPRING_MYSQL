@@ -29,4 +29,12 @@ public interface AppointmentsService {
 	*/
 	
 	Appointment consultarByIdAppointment(Long id);
+	
+	/**
+	*Metodo que permite guardar un appointment 
+	*@param appointment {@link Appointment} objeto appointment a guardar
+	*@return appointment guardado
+	*/
+	
+	Appointment guardarAppointment(Appointment appointment);
 }
