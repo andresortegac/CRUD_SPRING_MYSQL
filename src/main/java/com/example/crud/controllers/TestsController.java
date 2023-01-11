@@ -4,10 +4,10 @@
 package com.example.crud.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.crud.entity.Test;
+import com.example.crud.repository.TestsRepository;
 import com.example.crud.service.TestsService;
 
 /**
@@ -44,24 +44,39 @@ public class TestsController {
 		
 		List<Test> testsConsultados = this.testsServiceImpl.consultarTests();
 		
-		return ResponseEntity.ok(testsConsultados); 
-	}
+		if (testsConsultados.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(testsConsultados);
+        }
+		
+	} 
 	
 	@GetMapping("/consultarByIdTest/{id}")
 	
-	public Test consultarByIdTest(@PathVariable Long id){		
+	public ResponseEntity<Test> consultarByIdTest(@PathVariable Long id){	
 		
-		return testsServiceImpl.consultarByIdTest(id); 
+		Test testConsultadoById = testsServiceImpl.consultarByIdTest(id); 
+		
+		if(testConsultadoById == null){
+            return new ResponseEntity<>(testConsultadoById, HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(testConsultadoById, HttpStatus.OK);
+        }
 	}
 	
 	@PostMapping()
 	@RequestMapping(value = "guardarTest", method = RequestMethod.POST)	
     
-	public ResponseEntity<?> guardarTest(@RequestBody Test test){	
+	public ResponseEntity<Test> guardarTest(@RequestBody Test test){	
 		
-		Test testGuardado = this.testsServiceImpl.guardarTest(test);
+		Test testGuardado = this.testsServiceImpl.guardarTest(test);	
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(testGuardado);
+		if(testGuardado==null){
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }else{
+	        return new ResponseEntity<>(testGuardado, HttpStatus.CREATED);
+	    }
 		
 	}
 	
@@ -72,18 +87,23 @@ public class TestsController {
 		
 		Test testActualizado = this.testsServiceImpl.actualizarTest(test);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(testActualizado);
+		if(testActualizado!=null){
+            return ResponseEntity.status(HttpStatus.CREATED).body(testActualizado);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+		
 		
 	}
 	
 	@DeleteMapping()
 	@RequestMapping(value = "eliminarTest/{id}", method = RequestMethod.DELETE)	
     
-	public ResponseEntity<?> eliminarTest(@PathVariable Long id){	
+	public ResponseEntity<?> eliminarTest(@PathVariable Long id){		
 		
-		this.testsServiceImpl.eliminarTest(id);
-		
+        
 		return ResponseEntity.ok().build();
+		
 		
 	}
 }

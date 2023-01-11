@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.crud.entity.Test;
@@ -41,7 +43,7 @@ public class TestsServiceImpl implements TestsService {
 		if(optionalTest.isPresent()) {
 			return optionalTest.get();
 		}else {
-			return new Test();
+			return null;
 		}	
 		
 	}
@@ -59,7 +61,10 @@ public class TestsServiceImpl implements TestsService {
 
 	@Override
 	public void eliminarTest(Long id) {
-		this.testsRepository.deleteById(id);
+		Optional<Test> testExist = testsRepository.findById(id);
+        if(testExist.isPresent()) {
+            testsRepository.delete(testExist.get());
+        }
 	}
 
 }

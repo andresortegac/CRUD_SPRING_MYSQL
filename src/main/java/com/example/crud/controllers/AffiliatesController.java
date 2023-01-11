@@ -44,14 +44,26 @@ public class AffiliatesController {
 		
 		List<Affiliate> affiliatesConsultados = this.affiliatesServiceImpl.consultarAffiliates();
 		
-		return ResponseEntity.ok(affiliatesConsultados); 
+		if (affiliatesConsultados.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(affiliatesConsultados);
+        }
+		
 	}
 	
 	@GetMapping("/consultarByIdAffiliate/{id}")
 	
-	public Affiliate consultarByIdAffiliate(@PathVariable Long id){		
+	public ResponseEntity<Affiliate> consultarByIdAffiliate(@PathVariable Long id){	
 		
-		return affiliatesServiceImpl.consultarByIdAffiliate(id); 
+		Affiliate affiliateConsultadoById = affiliatesServiceImpl.consultarByIdAffiliate(id); 
+		
+		if(affiliateConsultadoById == null){
+            return new ResponseEntity<>(affiliateConsultadoById, HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(affiliateConsultadoById, HttpStatus.OK);
+        }
+		
 	}
 	
 	@PostMapping()
@@ -61,7 +73,11 @@ public class AffiliatesController {
 		
 		Affiliate affiliateGuardado = this.affiliatesServiceImpl.guardarAffiliate(affiliate);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(affiliateGuardado);
+		if(affiliateGuardado==null){
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }else{
+	        return new ResponseEntity<>(affiliateGuardado, HttpStatus.CREATED);
+	    }
 		
 	}
 	
@@ -72,7 +88,12 @@ public class AffiliatesController {
 		
 		Affiliate affiliateActualizado = this.affiliatesServiceImpl.actualizarAffiliate(affiliate);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(affiliateActualizado);
+		if(affiliateActualizado!=null){
+            return ResponseEntity.status(HttpStatus.CREATED).body(affiliateActualizado);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+		
 		
 	}
 	

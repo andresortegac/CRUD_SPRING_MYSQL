@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.crud.entity.Appointment;
+import com.example.crud.entity.Test;
 import com.example.crud.service.AppointmentsService;
 
 /**
@@ -43,14 +44,26 @@ public class AppointmentsController {
 		
 		List<Appointment> appointmentsConsultados = this.appointmentsServiceImpl.consultarAppointments();
 		
-		return ResponseEntity.ok(appointmentsConsultados); 
+		if (appointmentsConsultados.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(appointmentsConsultados);
+        }
+		
 	}
 	
 	@GetMapping("/consultarByIdAppointment/{id}")
 	
-	public Appointment consultarByIdAppointment(@PathVariable Long id){		
+	public ResponseEntity<Appointment> consultarByIdAppointment(@PathVariable Long id){	
 		
-		return appointmentsServiceImpl.consultarByIdAppointment(id); 
+		Appointment appointmentConsultadoById = appointmentsServiceImpl.consultarByIdAppointment(id); 
+		
+		if(appointmentConsultadoById == null){
+            return new ResponseEntity<>(appointmentConsultadoById, HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(appointmentConsultadoById, HttpStatus.OK);
+        }
+		
 	}
 	
 	@PostMapping()
@@ -60,7 +73,11 @@ public class AppointmentsController {
 		
 		Appointment appointmentGuardado = this.appointmentsServiceImpl.guardarAppointment(appointment);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(appointmentGuardado);
+		if(appointmentGuardado==null){
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }else{
+	        return new ResponseEntity<>(appointmentGuardado, HttpStatus.CREATED);
+	    }
 		
 	}
 	
@@ -71,7 +88,12 @@ public class AppointmentsController {
 		
 		Appointment appointmentActualizado = this.appointmentsServiceImpl.actualizarAppointment(appointment);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(appointmentActualizado);
+		if(appointmentActualizado!=null){
+            return ResponseEntity.status(HttpStatus.CREATED).body(appointmentActualizado);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+		
 		
 	}
 	
