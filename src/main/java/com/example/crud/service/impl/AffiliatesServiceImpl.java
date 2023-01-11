@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.crud.entity.Affiliate;
+import com.example.crud.entity.Test;
 import com.example.crud.repository.AffiliatesRepository;
 import com.example.crud.service.AffiliatesService;
 
@@ -65,8 +66,13 @@ public class AffiliatesServiceImpl implements AffiliatesService {
 
 	@Override
 	public void eliminarAffiliate(Long id) {
-		this.affiliatesRepository.deleteById(id);
+		affiliatesRepository.deleteById(id);
 		
+	}
+	
+	@Override
+	public Optional<Affiliate> findById(Long id) {
+		return affiliatesRepository.findById(id);
 	}
 
 }

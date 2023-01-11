@@ -4,6 +4,7 @@
 package com.example.crud.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -102,9 +103,15 @@ public class AffiliatesController {
     
 	public ResponseEntity<?> eliminarAffiliate(@PathVariable Long id){	
 		
-		this.affiliatesServiceImpl.eliminarAffiliate(id);
+		Optional<Affiliate> element = affiliatesServiceImpl.findById(id);
+
+	    if (!element.isPresent()) {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	    affiliatesServiceImpl.eliminarAffiliate(id);
+	    
+	    return ResponseEntity.ok().build();
 		
-		return ResponseEntity.ok().build();
 		
 	}
 

@@ -4,6 +4,7 @@
 package com.example.crud.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.crud.entity.Affiliate;
 import com.example.crud.entity.Test;
@@ -51,6 +52,6 @@ public interface AffiliatesService {
 	*@param id {@link Long} objeto affiliate a eliminar
 	*@return affiliate eliminado
 	*/
-	
+	Optional<Affiliate> findById(Long id);
 	void eliminarAffiliate(Long id);
 }
