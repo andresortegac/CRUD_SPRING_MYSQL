@@ -61,10 +61,13 @@ public class TestsServiceImpl implements TestsService {
 
 	@Override
 	public void eliminarTest(Long id) {
-		Optional<Test> testExist = testsRepository.findById(id);
-        if(testExist.isPresent()) {
-            testsRepository.delete(testExist.get());
-        }
+		
+        testsRepository.deleteById(id);
+	}
+
+	@Override
+	public Optional<Test> findById(Long id) {
+		return testsRepository.findById(id);
 	}
 
 }

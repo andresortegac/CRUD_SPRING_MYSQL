@@ -4,6 +4,7 @@
 package com.example.crud.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.crud.entity.Test;
 
@@ -51,6 +52,7 @@ public interface TestsService {
 	*@param id {@link Long} objeto test a eliminar
 	*@return test eliminado
 	*/
+	Optional<Test> findById(Long id);
 	
 	void eliminarTest(Long id);
 

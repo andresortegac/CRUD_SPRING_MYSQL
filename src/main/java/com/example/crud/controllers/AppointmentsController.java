@@ -94,7 +94,6 @@ public class AppointmentsController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 		
-		
 	}
 	
 	@DeleteMapping()

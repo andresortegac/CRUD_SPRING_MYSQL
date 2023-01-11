@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.crud.entity.Test;
-import com.example.crud.repository.TestsRepository;
 import com.example.crud.service.TestsService;
 
 /**
@@ -101,8 +100,16 @@ public class TestsController {
     
 	public ResponseEntity<?> eliminarTest(@PathVariable Long id){		
 		
+		Optional<Test> element = testsServiceImpl.findById(id);
+
+	    if (!element.isPresent()) {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	    testsServiceImpl.eliminarTest(id);
+	    
+	    return ResponseEntity.ok().build();
         
-		return ResponseEntity.ok().build();
+		
 		
 		
 	}
