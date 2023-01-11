@@ -101,9 +101,14 @@ public class AppointmentsController {
     
 	public ResponseEntity<?> eliminarAppointment(@PathVariable Long id){	
 		
-		this.appointmentsServiceImpl.eliminarAppointment(id);
-		
-		return ResponseEntity.ok().build();
+		Optional<Appointment> element = appointmentsServiceImpl.findById(id);
+
+	    if (!element.isPresent()) {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	    appointmentsServiceImpl.eliminarAppointment(id);
+	    
+	    return ResponseEntity.ok().build();
 		
 	}
 	

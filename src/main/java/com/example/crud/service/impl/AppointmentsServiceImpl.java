@@ -76,6 +76,11 @@ public class AppointmentsServiceImpl implements AppointmentsService {
 		return appointmentsRepository.findByAffiliateId(id);
 	}
 
+	@Override
+	public Optional<Appointment> findById(Long id) {
+		return appointmentsRepository.findById(id);
+	}
+
 	
 
 	

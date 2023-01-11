@@ -68,6 +68,6 @@ public interface AppointmentsService {
 	*@param id_affiliate {@link Affiliate} objeto appointment a consultar
 	*@return appointment consultado por id_affiliate
 	*/
-	
+	Optional<Appointment> findById(Long id);
 	List<Appointment> getAppointmentsByAffiliate(long id);
 }
