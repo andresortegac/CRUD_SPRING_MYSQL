@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.crud.entity.Affiliate;
-import com.example.crud.entity.Test;
 import com.example.crud.service.AffiliatesService;
 
 /**

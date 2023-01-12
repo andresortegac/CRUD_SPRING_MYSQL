@@ -6,7 +6,7 @@ package com.example.crud.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.crud.entity.Test;
+import com.example.crud.entity.TestEntity;
 
 /**
 *@author DevOrtega
@@ -15,7 +15,7 @@ import com.example.crud.entity.Test;
 */
 
 @Repository
-public interface TestsRepository extends CrudRepository<Test, Long> {
+public interface TestsRepository extends CrudRepository<TestEntity, Long> {
 
 }
 

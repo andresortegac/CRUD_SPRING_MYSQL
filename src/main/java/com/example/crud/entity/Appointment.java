@@ -13,7 +13,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
 *@author DevOrtega
@@ -22,6 +25,9 @@ import lombok.Data;
 */
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 
 @Table(name = "appointments")
@@ -37,11 +43,11 @@ public class Appointment {
 	private String date;
 	
 	@Column(name = "hour")
-	private LocalTime hour;
+	private String hour;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_test")
-	private Test test;
+	private TestEntity testEntity;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_affiliate")

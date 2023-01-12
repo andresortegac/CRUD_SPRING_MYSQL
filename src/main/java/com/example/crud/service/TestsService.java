@@ -6,7 +6,7 @@ package com.example.crud.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.crud.entity.Test;
+import com.example.crud.entity.TestEntity;
 
 /**
 *@author DevOrtega
@@ -21,7 +21,7 @@ public interface TestsService {
 	*@return listado de tests
 	*/
 	
-	List<Test> consultarTests();
+	List<TestEntity> consultarTests();
 	
 	/**
 	*Metodo que permite consultar por Id un test 
@@ -29,30 +29,30 @@ public interface TestsService {
 	*@return test consultado por id
 	*/
 	
-	Test consultarByIdTest(Long id);
+	TestEntity consultarByIdTest(Long id);
 	
 	/**
 	*Metodo que permite guardar un test 
-	*@param test {@link Test} objeto test a guardar
+	*@param testEntity {@link TestEntity} objeto test a guardar
 	*@return test guardado
 	*/
 	
-	Test guardarTest(Test test);
+	TestEntity guardarTest(TestEntity testEntity);
 	
 	/**
 	*Metodo que permite actualizar un test 
-	*@param test {@link Test} objeto test a actualizar
+	*@param testEntity {@link TestEntity} objeto test a actualizar
 	*@return test actualizado
 	*/
 	
-	Test actualizarTest(Test test);
+	TestEntity actualizarTest(TestEntity testEntity);
 	
 	/**
 	*Metodo que permite eliminar un test 
 	*@param id {@link Long} objeto test a eliminar
 	*@return test eliminado
 	*/
-	Optional<Test> findById(Long id);
+	Optional<TestEntity> findById(Long id);
 	
 	void eliminarTest(Long id);
 

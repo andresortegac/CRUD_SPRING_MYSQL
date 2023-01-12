@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.crud.entity.Test;
+import com.example.crud.entity.TestEntity;
 import com.example.crud.service.TestsService;
 
 /**
@@ -35,13 +35,14 @@ public class TestsController {
 	@Autowired
 	private TestsService testsServiceImpl;	
 	
+	
 	@GetMapping
 	@RequestMapping(value = "consultarTests", method = RequestMethod.GET)	
 	
     
 	public ResponseEntity<?> consultarTests(){
 		
-		List<Test> testsConsultados = this.testsServiceImpl.consultarTests();
+		List<TestEntity> testsConsultados = this.testsServiceImpl.consultarTests();
 		
 		if (testsConsultados.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -53,9 +54,9 @@ public class TestsController {
 	
 	@GetMapping("/consultarByIdTest/{id}")
 	
-	public ResponseEntity<Test> consultarByIdTest(@PathVariable Long id){	
+	public ResponseEntity<TestEntity> consultarByIdTest(@PathVariable Long id){	
 		
-		Test testConsultadoById = testsServiceImpl.consultarByIdTest(id); 
+		TestEntity testConsultadoById = testsServiceImpl.consultarByIdTest(id); 
 		
 		if(testConsultadoById == null){
             return new ResponseEntity<>(testConsultadoById, HttpStatus.NOT_FOUND);
@@ -67,9 +68,9 @@ public class TestsController {
 	@PostMapping()
 	@RequestMapping(value = "guardarTest", method = RequestMethod.POST)	
     
-	public ResponseEntity<Test> guardarTest(@RequestBody Test test){	
+	public ResponseEntity<TestEntity> guardarTest(@RequestBody TestEntity testEntity){	
 		
-		Test testGuardado = this.testsServiceImpl.guardarTest(test);	
+		TestEntity testGuardado = this.testsServiceImpl.guardarTest(testEntity);	
 		
 		if(testGuardado==null){
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -82,9 +83,9 @@ public class TestsController {
 	@PutMapping()
 	@RequestMapping(value = "actualizarTest", method = RequestMethod.PUT)	
     
-	public ResponseEntity<?> actualizarTest(@RequestBody Test test){	
+	public ResponseEntity<?> actualizarTest(@RequestBody TestEntity testEntity){	
 		
-		Test testActualizado = this.testsServiceImpl.actualizarTest(test);
+		TestEntity testActualizado = this.testsServiceImpl.actualizarTest(testEntity);
 		
 		if(testActualizado!=null){
             return ResponseEntity.status(HttpStatus.CREATED).body(testActualizado);
@@ -100,7 +101,7 @@ public class TestsController {
     
 	public ResponseEntity<?> eliminarTest(@PathVariable Long id){		
 		
-		Optional<Test> element = testsServiceImpl.findById(id);
+		Optional<TestEntity> element = testsServiceImpl.findById(id);
 
 	    if (!element.isPresent()) {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);

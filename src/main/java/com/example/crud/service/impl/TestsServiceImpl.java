@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.example.crud.entity.Test;
+import com.example.crud.entity.TestEntity;
 import com.example.crud.repository.TestsRepository;
 import com.example.crud.service.TestsService;
 /**
@@ -31,14 +31,14 @@ public class TestsServiceImpl implements TestsService {
 	private TestsRepository testsRepository;
 
 	@Override
-	public List<Test> consultarTests() {
-		List<Test> testsDataSourse =StreamSupport.stream(this.testsRepository.findAll().spliterator(), false).collect(Collectors.toList());
+	public List<TestEntity> consultarTests() {
+		List<TestEntity> testsDataSourse =StreamSupport.stream(this.testsRepository.findAll().spliterator(), false).collect(Collectors.toList());
 		return testsDataSourse;
 	}
 
 	@Override
-	public Test consultarByIdTest(Long id) {
-		Optional<Test> optionalTest = testsRepository.findById(id);
+	public TestEntity consultarByIdTest(Long id) {
+		Optional<TestEntity> optionalTest = testsRepository.findById(id);
 		
 		if(optionalTest.isPresent()) {
 			return optionalTest.get();
@@ -49,14 +49,14 @@ public class TestsServiceImpl implements TestsService {
 	}
 
 	@Override
-	public Test guardarTest(Test test) {
+	public TestEntity guardarTest(TestEntity testEntity) {
 		
-		return this.testsRepository.save(test);
+		return this.testsRepository.save(testEntity);
 	}
 
 	@Override
-	public Test actualizarTest(Test test) {
-		return this.testsRepository.save(test);
+	public TestEntity actualizarTest(TestEntity testEntity) {
+		return this.testsRepository.save(testEntity);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class TestsServiceImpl implements TestsService {
 	}
 
 	@Override
-	public Optional<Test> findById(Long id) {
+	public Optional<TestEntity> findById(Long id) {
 		return testsRepository.findById(id);
 	}
 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.crud.entity.Appointment;
-import com.example.crud.entity.Test;
+import com.example.crud.entity.TestEntity;
 
 /**
 *@author DevOrtega
@@ -41,7 +41,7 @@ public interface AppointmentsService {
 	
 	/**
 	*Metodo que permite actualizar un appointment 
-	*@param appointment {@link Test} objeto appointment a actualizar
+	*@param appointment {@link TestEntity} objeto appointment a actualizar
 	*@return appointment actualizado
 	*/
 	

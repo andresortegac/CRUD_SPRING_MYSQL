@@ -6,7 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
 *@author DevOrtega
@@ -15,10 +18,12 @@ import lombok.Data;
 */
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-
+@Builder
 @Table(name = "tests")
-public class Test {
+public class TestEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
